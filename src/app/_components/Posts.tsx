@@ -1,5 +1,6 @@
 "use client";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { Post } from "@components/Post";
 
 const POSTS = [
   { id: 1, title: "Post 1" },
@@ -33,8 +34,8 @@ export const Posts = () => {
   if (postQuery.isSuccess)
     return (
       <div>
-        {postQuery.data.map((post) => (
-          <div key={post.id}>{post.title}</div>
+        {postQuery.data.map(({ title, id }, i) => (
+          <Post title={title} key={id + i} />
         ))}
       </div>
     );
